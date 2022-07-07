@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Secirity-Pilicy" content="script-src 'self';">
+    <title>Note App</title>
+</head>
+<body>
+    <div class="title-bar">
+        <span class="document-title" id="dname">no file selcted</span>
+        <div class="menu-section">
+            <button id="save"><span class="material-icons">launch</span></button>
+            <button id="open"><span class="material-icons">note_add</span></button>
+        </div>
+    </div>
+    <main>
+        <textarea id="text" disabled></textarea>
+    </main>
+    <div id="notification" class="hidden">
+        <p id="message"></p>
+        <button id="close-button" onClick="closeNotification()">
+          Close
+        </button>
+        <button id="restart-button" onClick="restartApp()" class="hidden">
+          Restart
+        </button>
+      </div>
+  <script>
+
+    const { ipcRenderer } = require('electron');
+    const notification = document.getElementById('notification');
+    const message = document.getElementById('message');
+    const restartButton = document.getElementById('restart-button');
+    ipcRenderer.on('update_available', () => {
+      ipcRenderer.removeAllListeners('update_available');
+      message.innerText = 'A new update is available. Downloading now...';
+      notification.classList.remove('hidden');
+    });
+     ipcRenderer.on('update_downloaded', () => {
+      ipcRenderer.removeAllListeners('update_downloaded');
+      message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+      restartButton.classList.remove('hidden');
+      notification.classList.remove('hidden');
+    });
+    function closeNotification() {
+       notification.classList.add('hidden');
+       }
+    function restartApp() {
+        ipcRenderer.send('restart_app');
+    }
+  </script>
+</body>
+</html>

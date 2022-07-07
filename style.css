@@ -1,0 +1,60 @@
+body{
+    background-color: #8d8a8a;
+    margin: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.title-bar{
+    height: 50px;
+    width: 100%;
+    background-color: #BFBFBF;
+    -webkit-app-region: drag;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.title-bar .document-title,
+.title-bar .menu-section{
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.menu-section button{
+    background-color: #404040;
+    border: none;
+    outline: none;
+}
+main textarea{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    outline: none;
+    resize: none;
+}
+main{
+    flex: 1;
+    padding: 10px;
+}
+button:hover{
+    background-color:  rgb(253, 253, 253) ;
+}
+#dname {
+    font-size: small;
+    font-family: Consolas;
+}
+#notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  .hidden {
+    display: none;
+  }

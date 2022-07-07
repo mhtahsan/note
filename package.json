@@ -1,0 +1,47 @@
+{
+  "name": "Note",
+  "version": "1.0.0",
+  "description": "Take a note",
+  "main": "main.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/mhtahsan/note.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "build": {
+    "appId": "Note App",
+    "win": {
+      "publish": {
+        "provider": "github",
+        "repo": "note",
+        "owner": "mhtahsan"
+      },
+      "target": [
+        "nsis"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "Note App",
+      "license": "license.md",
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "author": "Mahmudul Hasan Tahsan",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^18.2.3",
+    "electron-builder": "^23.0.3",
+    "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "electron-updater": "^5.0.5"
+  }
+}
